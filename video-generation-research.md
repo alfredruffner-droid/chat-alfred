@@ -14,8 +14,9 @@ El ecosistema de generacion de video con IA ha madurado significativamente. La r
 | **Cuentos infantiles animados** | AnimateAI + Neolemon | Mootion, MagicLight AI |
 | **Videos pedagogicos con avatar** | HeyGen / Synthesia | Colossyan |
 | **Videos explicativos animados** | Runway Gen-4 + ElevenLabs | Veo 3.1 |
-| **Alto volumen / bajo costo** | Kling 2.6 / 3.0 | FAL.ai (multi-modelo) |
-| **Integracion con Claude (MCP)** | Kling MCP Server | Video Agent MCP, FAL.ai MCP |
+| **Estilos artisticos variados (anime, ilustracion)** | MiniMax Hailuo 2.3/2.5 | Kling 3.0 |
+| **Alto volumen / bajo costo** | Kling 2.6 / 3.0 | MiniMax Hailuo (Unlimited) |
+| **Integracion con Claude (MCP)** | MiniMax MCP (oficial) | Kling MCP, Video Agent MCP |
 
 ---
 
@@ -113,6 +114,61 @@ El mayor reto en la generacion de cuentos animados es el **character drift** (lo
 - **Fortaleza**: Calidad equivalente a ~40% del costo. Kling 3.0 introduce secuencias multi-toma con consistencia de sujeto entre angulos de camara
 - **Precio**: $0.07-$0.10/segundo
 - **API**: Disponible
+
+#### MiniMax / Hailuo AI (Destacado)
+- **Mejor para**: Fisica realista, estilos artisticos variados y relacion costo-rendimiento
+- **Modelo actual**: Hailuo 2.3 (oct 2025) / Hailuo 2.5 (2026) con motor de fisica avanzado
+- **Arquitectura**: MiniMax-M1 con 456 mil millones de parametros y ventana de contexto de 1M tokens
+- **Resolucion**: 768p y 1080p (1080p limitado a 6 seg)
+- **Benchmarks**: #2 global en Artificial Analysis, supera a Google Veo 3 en varias metricas de calidad
+- **Puntuacion**: 8.5/10 en reviews independientes
+- **Fortalezas**:
+  - **Motor de fisica excepcional**: Simulacion de fluidos, deteccion de colisiones, iluminacion global con ray-tracing (v2.5)
+  - **Estilos artisticos amplios**: Anime, ilustracion, pintura china con tinta, CG de videojuegos - ideal para cuentos infantiles artisticos
+  - **Micro-expresiones mejoradas**: Expresiones faciales realistas y matices emocionales
+  - **Control de camara**: Interpreta instrucciones complejas ("paneo a la derecha", "zoom dinamico", "saltar y girar")
+  - **Variante Fast**: 50% mas barato manteniendo buena fidelidad
+- **Precios**:
+  - Gratis: Videos de 6 seg en 1080p con marca de agua
+  - Standard: $9.99/mes (1,000 creditos, ~40 videos) = ~$0.25/clip
+  - Unlimited: $94.99/mes (creditos ilimitados) = ~$0.15-0.20/video
+  - API: $0.10/M tokens via plataforma MiniMax; tambien en fal.ai, Replicate, Segmind, WaveSpeedAI
+- **Debilidades**:
+  - Creditos "usar o perder" (no se acumulan)
+  - Clips cortos (6-10 seg max)
+  - Menos tutoriales y comunidad en Occidente vs Runway/Kling
+
+##### Hailuo Video Agent (Nuevo - en Beta)
+- **Que es**: Agente autonomo que genera videos completos de principio a fin usando lenguaje natural
+- **Innovacion**: Rompe con workflows de nodos rigidos. Un LLM invoca herramientas automaticamente en cada etapa (ideacion, storyboard, assets, edicion, voiceover)
+- **Fases de lanzamiento**:
+  1. Plantillas pre-construidas (un click)
+  2. Semi-personalizable (editar cualquier parte del proceso)
+  3. Agente totalmente autonomo (end-to-end)
+- **Transparencia**: Muestra el proceso de pensamiento paso a paso del agente en tiempo real
+- **Potencial para cuentos infantiles**: Alto - permite generar videos completos describiendo la historia en lenguaje natural
+
+##### MiniMax MCP Server Oficial (integracion con Claude)
+- **Repo**: [MiniMax-AI/MiniMax-MCP](https://github.com/MiniMax-AI/MiniMax-MCP)
+- **Capacidades**: Text-to-Speech, clonacion de voz, generacion de imagen y video
+- **Setup en Claude Desktop**:
+```json
+{
+  "mcpServers": {
+    "MiniMax": {
+      "command": "uvx",
+      "args": ["minimax-mcp"],
+      "env": {
+        "MINIMAX_API_KEY": "tu-api-key-aqui",
+        "MINIMAX_MCP_BASE_PATH": "/ruta/local",
+        "MINIMAX_API_HOST": "https://api.minimax.io",
+        "MINIMAX_API_RESOURCE_MODE": "url"
+      }
+    }
+  }
+}
+```
+- **Requisitos**: API key de MiniMax + `uv` (gestor de paquetes Python)
 
 #### Sora 2 (OpenAI) - Solo via ChatGPT
 - **Nota**: La app y API standalone de Sora se cerraron el 24 de marzo 2026
