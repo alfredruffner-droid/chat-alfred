@@ -187,6 +187,55 @@ Existen servidores MCP que permiten generar video directamente desde Claude:
 
 ---
 
+## Parte 6: Precios de API (Referencia Rapida)
+
+| Herramienta | API Self-Serve | Modelo de Precio | Costo Minimo |
+|---|---|---|---|
+| Google Veo 3.1 | Si (Gemini API) | Por segundo | $0.15/seg (Fast) - $0.60/seg (4K+audio) |
+| Runway Gen-4 | Si (REST API) | Por credito | ~$0.05/seg (Turbo) |
+| Kling AI | Solo Enterprise | Por paquete | ~$4,200 min (30K unidades) |
+| Kling AI (Web) | N/A | Suscripcion | $6.99-$25.99/mes |
+| Pika 2.2 | Via fal.ai | Por generacion | ~$0.45/clip |
+| Luma Ray3 | Si | Por tarea | $0.20/tarea |
+| MiniMax/Hailuo | Si | Por token | $0.10/M tokens |
+| Synthesia | Plan Creator+ | Por minuto | $89/mes |
+| HeyGen | Si (pay-as-you-go) | Por credito (1=1min) | Desde $5, $0.50-$0.99/min |
+| D-ID | Si | Por credito | $18/mes (Build) |
+| Seedance | Si | Por segundo | $0.0247/seg (mas barato) |
+
+> **NOTA**: Sora cerro su app y API standalone el 24 de marzo 2026. No construir sobre Sora.
+
+---
+
+## Parte 7: Alternativas Open Source (Auto-hospedadas)
+
+Para equipos con recursos de GPU propios:
+
+| Modelo | Licencia | VRAM Minima | Fortaleza |
+|---|---|---|---|
+| **Wan 2.2/2.6** (Alibaba) | Apache 2.0 (gratis) | 8 GB | Mejor calidad open-source, control de camara cinematografico |
+| **LTX-Video 2.3** (Lightricks) | Gratis <$10M rev | 12 GB (48 recomendado) | 18x mas rapido que Wan, hasta 4K a 50 FPS |
+| **Seedance 2.0** (ByteDance) | Open weights | Variable | Rating Elo mas alto (1,269), fine-tunable |
+| **Stable Video Diffusion** (Stability) | Community License | 8 GB | Enorme comunidad ComfyUI |
+
+### Workflow con ElevenLabs Flows
+ElevenLabs ofrece un canvas basado en nodos que encadena Veo, Kling, Wan y Seedance con voces, musica y efectos de sonido en un solo flujo visual.
+
+---
+
+## Parte 8: Consistencia de Personajes - El Problema Clave
+
+El **character drift** es el mayor desafio. Solucion por capas:
+
+1. **Crear "biblia de personaje"** con especificaciones visuales detalladas
+2. **Generar imagenes de referencia** desde multiples angulos
+3. **Usar herramientas de character locking**: Neolemon, LTX Studio (sistema Elements con @tagging)
+4. **Encadenar fotogramas**: Ultimo frame del clip N = referencia para clip N+1
+5. **Clips cortos (3-4 seg)** para minimizar drift
+6. **Avanzado**: Fine-tuning LoRA con 20-30 imagenes del personaje (mas consistente pero requiere GPU)
+
+---
+
 ## Fuentes
 
 - [Best Video Generation AI Models 2026 - Pinggy](https://pinggy.io/blog/best_video_generation_ai_models/)
