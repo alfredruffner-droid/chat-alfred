@@ -295,11 +295,20 @@ Pagas por uso (tokens o unidades). Necesitas programar o usar herramientas como 
 
 **MiniMax Token Plan (NUEVO - marzo 2026):**
 - Suscripcion unificada que da acceso a TODOS los modelos (texto, video, voz, musica, imagen) con una sola API key
-- Starter $10/mes: 1,500 req M2.7 (solo texto)
-- Plus $20/mes: 4,500 req M2.7 + 50 imagenes/dia + 4,000 chars TTS/dia + resource packs de video
 - Las cuotas de video/imagen/voz son INDEPENDIENTES del texto (no se consumen entre si)
-- ~20% descuento vs pay-as-you-go en modelos premium (Hailuo 2.3, Speech 2.8)
-- Ideal si usas MiniMax para multiples tareas (PDF a MD, imagenes, video, voz)
+- ~20% descuento vs pay-as-you-go en Resource Packs de modelos premium (Hailuo 2.3, Speech 2.8)
+- Pago anual ahorra ~17%
+
+| Plan | Precio/mes | Requests/5hrs | Velocidad | Que incluye |
+|---|---|---|---|---|
+| Starter | $10 | 1,500 | Standard (~60 TPS) | Solo texto M2.7 |
+| Plus | $20 | 4,500 | Standard | Texto + imagen + voz |
+| **Plus-Highspeed** | **$40** | **30,000** | **Rapido (~100 TPS)** | **Todo: texto, imagen, video, voz, musica** |
+| Max | $50 | 15,000 | Standard | Todo |
+| Max-Highspeed | $80 | 30,000 | Rapido | Todo |
+| Ultra-Highspeed | $150 | 30,000 | Rapido | Todo (mayor prioridad) |
+
+> **RECOMENDADO: Plus-Highspeed ($40/mes)** - Mejor relacion requests-por-dolar (30K req vs 15K del Max por $10 menos). Ideal para flujos multimodales: PDF a MD + imagenes + video + voz con una sola API key.
 
 **Kling API Directa (Enterprise):**
 | Concepto | Precio |
