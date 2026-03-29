@@ -243,7 +243,123 @@ Existen servidores MCP que permiten generar video directamente desde Claude:
 
 ---
 
-## Parte 6: Precios de API (Referencia Rapida)
+## Parte 6: Guia de Compra - Modelos Chinos (MiniMax y Kling)
+
+Los modelos chinos (MiniMax/Hailuo y Kling) tienen **3 formas de comprar**, cada una para un perfil diferente:
+
+### Forma 1: Suscripcion Web (La mas facil - para creadores individuales)
+
+Pagas mensual, recibes creditos, usas la interfaz web. Como Netflix pero para generar videos.
+
+**MiniMax / Hailuo:**
+| Plan | Precio/mes | Creditos | Videos aprox. | Costo por video |
+|---|---|---|---|---|
+| Gratis | $0 | Limitados | ~5-10/dia con marca de agua | $0 |
+| Standard | $9.99 | 1,000 | ~40 videos (6seg/1080p) | ~$0.25 |
+| Unlimited | $94.99 | Ilimitados | Sin limite | ~$0.15-0.20 |
+
+**Kling AI:**
+| Plan | Precio/mes | Creditos | Videos aprox. | Costo por video |
+|---|---|---|---|---|
+| Gratis | $0 | 66/dia | ~6 videos/dia (5seg) con marca de agua | $0 |
+| Standard | $10 | 660/mes | ~66 videos (modo estandar) | ~$0.15 |
+| Pro | $37 | 3,000/mes | ~150 videos (720p/1080p) | ~$0.25 |
+| Premier | $92 | 8,000/mes | ~400 videos (1080p) | ~$0.23 |
+| Ultra | $180 | 26,000/mes | ~1,300 videos | ~$0.14 |
+
+> **OJO con creditos**: En MiniMax los creditos NO se acumulan (los pierdes al final del mes). En Kling los creditos de planes pagados duran 2 anos. Puedes comprar creditos extra en Kling desde $5 (330 creditos, validos 2 anos).
+
+> **OJO con generaciones fallidas**: En Kling, si el video falla igual te cobran los creditos. En MiniMax no.
+
+> **Descuento anual**: Kling ofrece ~34% descuento pagando anual.
+
+**Cuando elegir suscripcion web:**
+- Eres creador individual o equipo pequeno
+- Usas la interfaz visual (no necesitas programar)
+- Generas menos de ~100 videos/mes
+- Quieres empezar rapido sin configuracion tecnica
+
+---
+
+### Forma 2: API Directa (Para desarrolladores y automatizacion)
+
+Pagas por uso (tokens o unidades). Necesitas programar o usar herramientas como MCP.
+
+**MiniMax API Directa:**
+| Concepto | Precio |
+|---|---|
+| Video Hailuo-02 (512p, 10seg) | 0.5 unidades por video |
+| Texto M2.5 | $0.10-0.20 por millon de tokens |
+| TTS (voz) | Variable por uso |
+
+**MiniMax Token Plan (NUEVO - marzo 2026):**
+- Suscripcion unificada que da acceso a TODOS los modelos (texto, video, voz, musica, imagen) con una sola API key
+- ~20% descuento vs pay-as-you-go en modelos premium (Hailuo 2.3, Speech 2.8)
+- Paquetes de recursos adicionales comprables
+- Ideal si usas multiples capacidades de MiniMax
+
+**Kling API Directa (Enterprise):**
+| Concepto | Precio |
+|---|---|
+| Paquete minimo | ~$4,200 (30,000 unidades, 90 dias) |
+| Precio por unidad | $0.14 |
+| 1 unidad = | 1 video de 5 seg (modo estandar) |
+
+> **IMPORTANTE**: La API oficial de Kling es solo enterprise ($4,200 minimo). No es accesible para proyectos pequenos. La de MiniMax si es accesible individualmente.
+
+**Cuando elegir API directa:**
+- Necesitas automatizar la generacion (app, bot, flujo de trabajo)
+- Quieres integrar con Claude via MCP
+- Para MiniMax: cualquier volumen funciona
+- Para Kling: solo si generas a gran escala (enterprise)
+
+---
+
+### Forma 3: API via Terceros (La mejor opcion para desarrolladores)
+
+Plataformas intermediarias dan acceso a MULTIPLES modelos con una sola cuenta y API key. Es como un "supermercado de APIs de video".
+
+**fal.ai (RECOMENDADO para desarrolladores):**
+| Modelo | Precio por clip | Notas |
+|---|---|---|
+| Hailuo 2.3 (MiniMax) 1080p | ~$0.28-0.49/video | 6 seg |
+| Kling 3.0 Pro (sin audio) | $0.112/seg (~$0.56/5seg) | |
+| Kling 3.0 Pro (con audio+voz) | $0.196/seg (~$0.98/5seg) | |
+| PixVerse v5.5 720p | $0.20/video | 5 seg |
+| Luma Ray2 | ~$0.50/video | |
+
+**Otras plataformas terceras:**
+| Plataforma | Ventaja | Modelos disponibles |
+|---|---|---|
+| **fal.ai** | Mas barato, arranque en frio 5-10seg | MiniMax, Kling, Luma, PixVerse, LTX |
+| **Replicate** | Mejor documentacion | MiniMax Hailuo 2.3, Wan, LTX |
+| **Segmind** | Pay-as-you-go sin compromisos | MiniMax, Kling |
+| **PiAPI** | Kling a $0.13/video | Kling (mas barato que oficial) |
+| **WaveSpeedAI** | Alternativa a Hailuo | MiniMax, otros |
+| **ModelsLab** | 400+ modelos en una API | Todo |
+
+**Cuando elegir terceros:**
+- Quieres probar multiples modelos sin crear cuentas en cada uno
+- No quieres pagar $4,200 por la API de Kling
+- Quieres pagar solo por lo que usas (sin suscripcion)
+- Necesitas una sola API key para todo
+
+---
+
+### Resumen: Cual forma elegir segun tu perfil
+
+| Tu perfil | Forma recomendada | Servicio sugerido |
+|---|---|---|
+| **Creador individual, pocos videos** | Suscripcion web | MiniMax Standard ($9.99) o Kling Standard ($10) |
+| **Creador de volumen** | Suscripcion web | MiniMax Unlimited ($94.99) o Kling Premier ($92) |
+| **Desarrollador, quiere automatizar** | API via terceros | fal.ai (pay-as-you-go) |
+| **Desarrollador, usa Claude/MCP** | API directa MiniMax | MiniMax Token Plan + MCP Server |
+| **Empresa/alto volumen** | API directa | Kling Enterprise ($4,200+) o MiniMax Token Plan |
+| **Solo quiere probar** | Gratis | MiniMax gratis o Kling gratis (66 cred/dia) |
+
+---
+
+## Parte 6b: Precios de API - Todas las plataformas (Referencia Rapida)
 
 | Herramienta | API Self-Serve | Modelo de Precio | Costo Minimo |
 |---|---|---|---|
