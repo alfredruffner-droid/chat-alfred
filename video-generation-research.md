@@ -104,10 +104,11 @@ El mayor reto en la generacion de cuentos animados es el **character drift** (lo
 - **API**: Disponible
 
 #### Google Veo 3 / Veo 3.1
-- **Mejor para**: 4K con audio nativo
-- **Fortaleza**: Unico modelo con salida nativa 4K. Integra con Google Drive, YouTube Studio, Google Ads via Gemini API
-- **Precio**: $0.20-$0.60/segundo segun resolucion y audio
-- **API**: Via Gemini API
+- **Mejor para**: Alta resolucion con audio nativo
+- **Fortaleza**: Genera a 1080p y upscalea a 4K con IA (no es 4K nativo puro). Integra con Google Drive, YouTube Studio, Google Ads via Gemini API
+- **Limitaciones**: Clips max 8 seg, 4K solo en preview/Ultra ($249.99/mes), upscaling no lossless
+- **Precio**: $0.15/seg (Fast) - $0.40/seg (Standard). 4K solo en tier Ultra
+- **API**: Via Gemini API / Vertex AI
 
 #### Kling 2.6 / 3.0 (Kuaishou)
 - **Mejor para**: Relacion precio-calidad
@@ -294,9 +295,11 @@ Pagas por uso (tokens o unidades). Necesitas programar o usar herramientas como 
 
 **MiniMax Token Plan (NUEVO - marzo 2026):**
 - Suscripcion unificada que da acceso a TODOS los modelos (texto, video, voz, musica, imagen) con una sola API key
+- Starter $10/mes: 1,500 req M2.7 (solo texto)
+- Plus $20/mes: 4,500 req M2.7 + 50 imagenes/dia + 4,000 chars TTS/dia + resource packs de video
+- Las cuotas de video/imagen/voz son INDEPENDIENTES del texto (no se consumen entre si)
 - ~20% descuento vs pay-as-you-go en modelos premium (Hailuo 2.3, Speech 2.8)
-- Paquetes de recursos adicionales comprables
-- Ideal si usas multiples capacidades de MiniMax
+- Ideal si usas MiniMax para multiples tareas (PDF a MD, imagenes, video, voz)
 
 **Kling API Directa (Enterprise):**
 | Concepto | Precio |
