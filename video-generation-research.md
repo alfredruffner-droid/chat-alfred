@@ -299,16 +299,18 @@ Pagas por uso (tokens o unidades). Necesitas programar o usar herramientas como 
 - ~20% descuento vs pay-as-you-go en Resource Packs de modelos premium (Hailuo 2.3, Speech 2.8)
 - Pago anual ahorra ~17%
 
-| Plan | Precio/mes | Requests/5hrs | Velocidad | Que incluye |
-|---|---|---|---|---|
-| Starter | $10 | 1,500 | Standard (~60 TPS) | Solo texto M2.7 |
-| Plus | $20 | 4,500 | Standard | Texto + imagen + voz |
-| **Plus-Highspeed** | **$40** | **30,000** | **Rapido (~100 TPS)** | **Todo: texto, imagen, video, voz, musica** |
-| Max | $50 | 15,000 | Standard | Todo |
-| Max-Highspeed | $80 | 30,000 | Rapido | Todo |
-| Ultra-Highspeed | $150 | 30,000 | Rapido | Todo (mayor prioridad) |
+| Plan | Precio/mes | Requests/5hrs | Velocidad | Imagenes/dia | Voz chars/dia | Video/dia | Musica/dia |
+|---|---|---|---|---|---|---|---|
+| Starter | $10 | 1,500 | Standard | -- | -- | -- | -- |
+| Plus | $20 | 4,500 | Standard | 50 | 4,000 | -- | -- |
+| Plus-Highspeed | $40 | 4,500 | Rapido (~100 TPS) | 100 | 9,000 | -- | -- |
+| **Max** | **$50** | **15,000** | **Standard** | **120** | **11,000** | **4 (2 Fast + 2 HD)** | **4 canciones** |
+| Max-Highspeed | $80 | 15,000 | Rapido | 200 | 19,000 | 6 (3 Fast + 3 HD) | 7 canciones |
+| Ultra-Highspeed | $150 | 30,000 | Rapido | 800 | 50,000 | 10 (5 Fast + 5 HD) | 15 canciones |
 
-> **RECOMENDADO: Plus-Highspeed ($40/mes)** - Mejor relacion requests-por-dolar (30K req vs 15K del Max por $10 menos). Ideal para flujos multimodales: PDF a MD + imagenes + video + voz con una sola API key.
+> **RECOMENDADO para video: Max ($50/mes)** - Incluye ~120 videos/mes + 3,600 imagenes + 330K chars voz. Solo $10 mas que Plus-Highspeed.
+> **RECOMENDADO solo texto+imagenes: Plus-Highspeed ($40/mes)** - Velocidad rapida, 3,000 imagenes/mes, sin video.
+> **Video Hailuo 2.3**: 768p (6s o 10s) o 1080p (solo 6s). Para redes sociales 768p es suficiente.
 
 **Kling API Directa (Enterprise):**
 | Concepto | Precio |
@@ -371,7 +373,46 @@ Plataformas intermediarias dan acceso a MULTIPLES modelos con una sola cuenta y 
 
 ---
 
-## Parte 6b: Precios de API - Todas las plataformas (Referencia Rapida)
+## Parte 6b: Ollama vs MiniMax Token Plan (Solo Texto)
+
+### Ollama Cloud (suscripcion fija, sin cobro por token)
+- Free: $0/mes (limites bajos)
+- Pro: $20/mes (sesiones por 5hrs + semanales)
+- Max: $100/mes (mas sesiones)
+- Soporta M2.7 via `minimax-m2.7:cloud`
+- Ventaja: Precio fijo sin sorpresas. Tambien da acceso a otros modelos (Llama, Qwen, DeepSeek)
+- Desventaja: Solo texto, sin imagenes/video/voz. Limites por sesion, no por tokens
+
+### Ollama Local (gratis pero requiere hardware caro)
+- M2.7 (229B parametros MoE) necesita minimo ~96 GB VRAM (quant 2-bit)
+- Recomendado: 128 GB (Mac Studio M4 Max ~$4,000 o 4x RTX 4090 ~$8,000)
+- Velocidad local: ~5-25 tokens/seg (muy lento vs API a ~100 TPS)
+- NO es viable para M2.7 en hardware consumer normal
+- SI funciona bien para modelos pequenos (Llama 8B, Qwen 32B) con una RTX 4090
+
+### MiniMax API directa pay-as-you-go
+- Input: $0.30/M tokens, Output: $1.20/M tokens
+- Con $40 procesas ~75 millones de tokens de input = decenas de miles de paginas PDF
+- Sin limites de sesion, pagas solo lo que usas
+- El mas economico para procesamiento puro de texto a gran volumen
+
+### Comparacion con $40/mes de presupuesto
+
+| Aspecto | Ollama Pro ($20) | Token Plan Plus-HS ($40) | API Pay-as-you-go ($40) |
+|---|---|---|---|
+| Texto M2.7 | Sesiones limitadas | 4,500 req/5hrs (rapido) | ~75M tokens input |
+| Imagenes | No | 3,000/mes | No |
+| Voz | No | 270K chars/mes | No |
+| Video | No | No | No |
+| Otros modelos | Si (Llama, Qwen, etc) | No | No |
+| Velocidad | Variable | ~100 TPS | ~54-100 TPS |
+| Mejor para | Multi-modelo | Texto+imagen+voz fijo | Volumen alto solo texto |
+
+> **Recomendacion**: Para solo texto, API pay-as-you-go es la mejor opcion (maximo volumen por dolar). Para texto+imagenes+voz, Token Plan Plus-HS ($40). Para texto+imagenes+voz+VIDEO, Token Plan Max ($50).
+
+---
+
+## Parte 6c: Precios de API - Todas las plataformas (Referencia Rapida)
 
 | Herramienta | API Self-Serve | Modelo de Precio | Costo Minimo |
 |---|---|---|---|
