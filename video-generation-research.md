@@ -415,6 +415,28 @@ Ollama Cloud corre los modelos en servidores NVIDIA de Ollama. Tu solo mandas el
 
 > **Recomendacion**: Ollama Pro ($20) para texto multi-modelo es excelente. Si necesitas imagenes/voz/video, complementar con MiniMax.
 
+### Ollama Cloud: Limites y Capacidades Reales
+
+**Limites de uso**: Ollama NO publica numeros exactos. Muestra un porcentaje de uso (ej: "6.7% sesion, 17.3% semanal"). Modelos grandes consumen mas % que pequenos. Al 90% te avisan, al 100% te ponen en cola.
+
+**Limitacion critica**: Output maximo de 16,384 tokens (~12 paginas) por respuesta en modelos cloud. Problematico para documentos largos.
+
+**Vision/Imagenes**: SI - soporta modelos multimodales (Llama 4, Gemma 3, LLaVA, Granite3.2-vision). Puede ver graficos, tablas, diagramas.
+
+**PDF a texto**: SI - via Ollama-OCR (libreria Python). Extrae texto y datos estructurados, exporta en Markdown.
+
+**Comparacion para PDFs:**
+| Aspecto | Ollama Cloud | MiniMax M2.7 |
+|---|---|---|
+| Vision/imagenes | SI | NO (solo texto) |
+| PDF directo | SI (Ollama-OCR) | NO (texto pre-extraido) |
+| Output maximo | 16,384 tokens (~12 pags) | 131,072 tokens (~100 pags) |
+
+**Pipeline optimo para PDFs complejos:**
+1. PDF con imagenes → Ollama Cloud (vision) → extrae texto + describe imagenes
+2. Texto extraido → MiniMax M2.7 → formatea en Markdown
+3. Contenido listo → MiniMax Hailuo → genera video explicativo
+
 ---
 
 ## Parte 6c: Precios de API - Todas las plataformas (Referencia Rapida)
