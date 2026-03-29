@@ -373,42 +373,47 @@ Plataformas intermediarias dan acceso a MULTIPLES modelos con una sola cuenta y 
 
 ---
 
-## Parte 6b: Ollama vs MiniMax Token Plan (Solo Texto)
+## Parte 6b: Ollama Cloud vs MiniMax Token Plan
 
-### Ollama Cloud (suscripcion fija, sin cobro por token)
-- Free: $0/mes (limites bajos)
-- Pro: $20/mes (sesiones por 5hrs + semanales)
-- Max: $100/mes (mas sesiones)
-- Soporta M2.7 via `minimax-m2.7:cloud`
-- Ventaja: Precio fijo sin sorpresas. Tambien da acceso a otros modelos (Llama, Qwen, DeepSeek)
-- Desventaja: Solo texto, sin imagenes/video/voz. Limites por sesion, no por tokens
+### Ollama Cloud (precio fijo, ELLOS ponen el computo - NO necesitas GPU)
 
-### Ollama Local (gratis pero requiere hardware caro)
-- M2.7 (229B parametros MoE) necesita minimo ~96 GB VRAM (quant 2-bit)
-- Recomendado: 128 GB (Mac Studio M4 Max ~$4,000 o 4x RTX 4090 ~$8,000)
-- Velocidad local: ~5-25 tokens/seg (muy lento vs API a ~100 TPS)
-- NO es viable para M2.7 en hardware consumer normal
-- SI funciona bien para modelos pequenos (Llama 8B, Qwen 32B) con una RTX 4090
+Ollama Cloud corre los modelos en servidores NVIDIA de Ollama. Tu solo mandas el prompt desde cualquier computadora (incluso laptop basica). No loguean ni entrenan con tus datos.
 
-### MiniMax API directa pay-as-you-go
+| Plan | Precio | Limites | Ideal para |
+|---|---|---|---|
+| Free | $0/mes | Uso ligero | Probar |
+| **Pro** | **$20/mes** ($200/año) | Uso diario normal (sesiones 5hrs + semanales) | Trabajo diario |
+| Max | $100/mes | Uso pesado/continuo + prioridad | Agentes, batch |
+
+**Modelos disponibles en nube** (sin GPU propia):
+- `minimax-m2.7:cloud` (229B params), `deepseek-v3.1:671b-cloud`, `qwen3-coder:480b-cloud`
+- `kimi-k2:1t-cloud` (1 trillon params), `gpt-oss:120b-cloud`, Llama, Mistral, GLM-5, Nemotron...
+
+**Como funcionan los limites**: No cobran por token. Cobran por tiempo de GPU (sesiones). Se resetean cada 5 horas (sesion) y cada 7 dias (semanal). Prompts cortos con cache gastan menos.
+
+**Gran ventaja**: Por $20/mes accedes a MUCHOS modelos gigantes, no solo uno. Puedes usar el mejor modelo para cada tarea.
+
+### Ollama Local (gratis pero requiere hardware caro - solo para modelos pequenos)
+- M2.7 (229B params MoE) necesita minimo ~96 GB VRAM - NO viable en hardware consumer
+- Para modelos pequenos (Llama 8B, Qwen 32B) SI funciona con una RTX 4090 (~$2,000)
+- Si tienes Mac Studio M4 Max 128GB (~$4,000) puedes correr M2.7 localmente a ~20 TPS
+
+### MiniMax API directa pay-as-you-go (sin suscripcion)
 - Input: $0.30/M tokens, Output: $1.20/M tokens
 - Con $40 procesas ~75 millones de tokens de input = decenas de miles de paginas PDF
 - Sin limites de sesion, pagas solo lo que usas
-- El mas economico para procesamiento puro de texto a gran volumen
 
-### Comparacion con $40/mes de presupuesto
+### Comparacion: Que conviene segun tu necesidad
 
-| Aspecto | Ollama Pro ($20) | Token Plan Plus-HS ($40) | API Pay-as-you-go ($40) |
-|---|---|---|---|
-| Texto M2.7 | Sesiones limitadas | 4,500 req/5hrs (rapido) | ~75M tokens input |
-| Imagenes | No | 3,000/mes | No |
-| Voz | No | 270K chars/mes | No |
-| Video | No | No | No |
-| Otros modelos | Si (Llama, Qwen, etc) | No | No |
-| Velocidad | Variable | ~100 TPS | ~54-100 TPS |
-| Mejor para | Multi-modelo | Texto+imagen+voz fijo | Volumen alto solo texto |
+| Si quieres... | Mejor opcion | Precio/mes |
+|---|---|---|
+| **Solo texto, multiples modelos** | **Ollama Pro** | $20 |
+| **Texto + imagenes + voz** | **MiniMax Plus-HS** | $40 |
+| **Texto + imagenes + voz + VIDEO** | **MiniMax Max** | $50 |
+| **Texto en volumen masivo** | **MiniMax pay-as-you-go** | ~$0.30/M tokens |
+| **Todo: multi-modelo + video** | **Ollama Pro + MiniMax Max** | $70 |
 
-> **Recomendacion**: Para solo texto, API pay-as-you-go es la mejor opcion (maximo volumen por dolar). Para texto+imagenes+voz, Token Plan Plus-HS ($40). Para texto+imagenes+voz+VIDEO, Token Plan Max ($50).
+> **Recomendacion**: Ollama Pro ($20) para texto multi-modelo es excelente. Si necesitas imagenes/voz/video, complementar con MiniMax.
 
 ---
 
